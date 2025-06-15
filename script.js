@@ -1,71 +1,74 @@
+// Variáveis
+const tarefaInput = document.getElementById("tarefa");
+const adicionarBotao = document.getElementById("adicionar");
+const listaTarefas = document.getElementById("tarefas");
 
-   // Seleciona os elementos da DOM
 
-const tarefaInput = document.getElementById("InputTarefa");
-const tarefaLista = document.getElementById("ListadeTarefas");
-   
-adicionarBotao.addEventListener("button", adicionarTarefa);
+// Event Listeners
+adicionarBotao.addEventListener("click", adicionarTarefa);
 tarefaInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
       adicionarTarefa();
   }
 });
 
-// Função para adicionar uma nova tarefa
+
+// Funções
 function adicionarTarefa() {
-    const tarefa = tarefaInput.value.trim();
-    if (tarefa !== "") {
-        const listaDeItens = document.createElement("li");
-    listaDeItens.innerHTML = `${tarefa} <button class="excluir">Excluir</button>`;
-        tarefaLista.appendChild(listaDeItens);
-        tarefaInput.value = ""; // Limpa o campo de entrada
-    } 
+  const tarefaTexto = tarefaInput.value;
+  if (tarefaTexto.trim() !== "") {
+      const novaTarefa = document.createElement("li");
+      novaTarefa.innerHTML = `
+          ${tarefaTexto} <button class="excluir">Excluir</button>
+      `;
+      listaTarefas.appendChild(novaTarefa);
+      tarefaInput.value = "";
+  }
 }
+
+
 listaTarefas.addEventListener("click", function (e) {
   if (e.target.classList.contains("excluir")) {
       e.target.parentElement.remove();
   }
 });
-for (let i = 0; i < tarefas.length; i++) {
-    const li = document.createElement("li");
+listaTarefas.addEventListener("click", function (e) {
+listaTarefas.innerHTML = `${tarefaTexto} <span class="remove-btn" onclick="removeTask(this)">X</span>`;
+        taskList.appendChild(listaTarefas);
 
-    const span = document.createElement("span");
-    span.textContent = tarefas[i];
-
-    // Ao clicar no texto, risca a tarefa
-    span.addEventListener("click", function () {
-      span.classList.toggle("feito");
-    });
-const botao = document.createElement("button");
-    botao.textContent = "Excluir";
-    botao.classList.add("excluir");
-
-    botao.addEventListener("click", function () {
-      tarefas.splice(i, 1); // remove do array
-      mostrarTarefas();     // atualiza a lista
-    });
-
-    li.appendChild(span);
-    li.appendChild(botao);
-    listaTarefas.appendChild(li);
-}
-
-// const deleteTodo = (index) => {
-//   todosArr.splice(index, 1);
-//   createTodo(todosArr);
-// };
-
-// let todosArr = []
-// const createTodo = (arr) => {}
-//   todoList.innerHTML = "";
-//   arr.forEach((todo, id)) => {}
-
-
-
- 
-     
-      
+});
 
 
 
 
+
+
+
+
+// function add() {
+//   let li = document.createElement('LI');
+//   let input_value = document.form_main.task.value;
+//   let input_text = document.createTextNode(input_value);
+
+//   li.appendChild(input_text);
+//   document.querySelector('ul').appendChild(li);
+//   document.form_main.task.value = "";
+
+//   createCloseButton(li);
+// }
+// function createCloseButton(li) {
+//   let span = document.createElement("SPAN");
+//   let txt = document.createTextNode("\u00D7");
+
+//   span.className = "close";
+//   span.appendChild(txt);
+//   li.appendChild(span);
+
+//   span.onclick = () => span.parentElement.style.display = "none";
+// }
+// document.querySelectorAll('li').forEach(createCloseButton);
+
+// document.querySelector('ul').addEventListener('click', (e) => {
+//   if (e.target.tagName === 'LI')
+//     e.target.classList.toggle('checked');
+// });
